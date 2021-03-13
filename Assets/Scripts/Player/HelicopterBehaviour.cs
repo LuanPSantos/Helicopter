@@ -7,12 +7,12 @@ using static UnityEngine.InputSystem.InputAction;
 public class HelicopterBehaviour : MonoBehaviour
 {
     public GameObject graph;
+    public ParticleSystem particles;
 
     public float force = 90_000f;
     public bool isDead = false;
 
     private Rigidbody2D rb;
-    private ParticleSystem particles;
     private Vector3 initialPosition;
 
     private bool isAccelerating = false;
@@ -24,7 +24,6 @@ public class HelicopterBehaviour : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        particles = GetComponent<ParticleSystem>();
         initialPosition = transform.position;
 
         GameplayManager.OnSpeedChanged += SetSpeed;
@@ -48,7 +47,22 @@ public class HelicopterBehaviour : MonoBehaviour
 
     private void ToggleIsAccelerating()
     {
-        isAccelerating = Input.GetKey(KeyCode.Mouse0);
+
+
+#if UNITY_ANDROID
+            if(Application.platform == RuntimePlatform.Android)
+            {
+                isAccelerating = Input.touchCount > 0;
+            }
+#endif
+
+#if UNITY_EDITOR
+        if (Application.platform == RuntimePlatform.WindowsEditor)
+            {
+                isAccelerating = Input.GetKey(KeyCode.Mouse0);
+            }
+        #endif
+
     }
 
     private void Fly()
@@ -65,12 +79,19 @@ public class HelicopterBehaviour : MonoBehaviour
         onChangeXPosition?.Invoke(Mathf.RoundToInt(transform.position.x));
     }
 
+    private void Explode()
+    {
+        particles.gameObject.transform.position = transform.position;
+        particles.Play();
+    }
+
     private void Crash()
     {
-        particles.Play();
+        Explode();
 
         graph.SetActive(false);
         rb.isKinematic = true;
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
         enabled = false;
         isDead = true;
 
@@ -82,6 +103,7 @@ public class HelicopterBehaviour : MonoBehaviour
         graph.SetActive(true);
         transform.position = initialPosition;
         rb.isKinematic = true;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         enabled = false;
         isDead = false;
     }

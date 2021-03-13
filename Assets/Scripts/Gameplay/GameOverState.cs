@@ -11,6 +11,6 @@ public class GameOverState : GameplayState
     }
     public override void Apply()
     {
-        gameplayManager.stateMachine.SetState(new InitialState(gameplayManager));
+        gameplayManager.pauseMenuCanvas.SetActive(true);
     }
 }

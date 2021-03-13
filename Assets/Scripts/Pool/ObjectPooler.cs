@@ -21,7 +21,14 @@ public class ObjectPooler : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
     }
 
     private void Start()
@@ -47,7 +54,7 @@ public class ObjectPooler : MonoBehaviour
     public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation, Vector3 scale)
     {
 
-        if (!poolDictionary.ContainsKey(tag)) 
+        if (!poolDictionary.ContainsKey(tag) || poolDictionary[tag].Count == 0) 
         {
             Debug.LogWarning("Not Found: " + tag);
             return null;

@@ -19,16 +19,24 @@ public class ScenarioGenerator : MonoBehaviour
 
     private void Awake()
     {
-        HelicopterBehaviour.onChangeXPosition += (xPosition) => { GenerateColumn(xPosition + offsetColumnPositionX); };
+        
     }
 
     private void Start()
     {
+        HelicopterBehaviour.onChangeXPosition += GenerateColumn;
         objectPooler = ObjectPooler.Instance;
+    }
+
+    private void OnDestroy()
+    {
+        HelicopterBehaviour.onChangeXPosition -= GenerateColumn;
     }
 
     private void GenerateColumn(float x)
     {
+        x = x + offsetColumnPositionX;
+
         if (x != lastXPosition + 1) return;
 
         lastXPosition++;

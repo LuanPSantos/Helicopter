@@ -10,6 +10,7 @@ public class GameplayManager : MonoBehaviour
     public static event Action<float> OnDifficultyChanged;
 
     public GameObject player;
+    public GameObject pauseMenuCanvas;
 
     public float speed;
     public float difficulty;
@@ -38,7 +39,7 @@ public class GameplayManager : MonoBehaviour
 
     public void IncreaseDifficulty()
     {
-        OnSpeedChanged?.Invoke(3f);
-        OnDifficultyChanged?.Invoke(1f);
+        OnSpeedChanged?.Invoke(speed);
+        OnDifficultyChanged?.Invoke(difficulty);
     }
 }
