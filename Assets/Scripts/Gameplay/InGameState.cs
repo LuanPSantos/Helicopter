@@ -9,7 +9,8 @@ public class InGameState : GameplayState
     {
         helicopterBehaviour = gameplayManager.player.GetComponent<HelicopterBehaviour>();
         helicopterBehaviour.StartFlying();
-        gameplayManager.pauseMenuCanvas.SetActive(false);
+
+        gameplayManager.endGameMenu.gameObject.SetActive(false);
     }
     public override void Apply()
     {

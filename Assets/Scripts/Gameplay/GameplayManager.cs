@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using static UnityEngine.InputSystem.InputAction;
 
@@ -10,13 +11,16 @@ public class GameplayManager : MonoBehaviour
     public static event Action<float> OnDifficultyChanged;
 
     public GameObject player;
-    public GameObject pauseMenuCanvas;
+    public EndGameMenu endGameMenu;
+    public TextMeshProUGUI scoreText;
 
     public float speed;
     public float difficulty;
 
     public GameplayStateMachine stateMachine;
 
+    public int currentScore = 0;
+    public int scoreOffset = 0;
     private void Awake()
     {
         stateMachine = new GameplayStateMachine(new InitialState(this));
@@ -24,6 +28,8 @@ public class GameplayManager : MonoBehaviour
     void Start()
     {
         stateMachine.Apply();
+
+        HelicopterBehaviour.onChangeXPosition += Score;
     }
 
     void Update()
@@ -41,5 +47,16 @@ public class GameplayManager : MonoBehaviour
     {
         OnSpeedChanged?.Invoke(speed);
         OnDifficultyChanged?.Invoke(difficulty);
+    }
+
+    private void Score(float playerPositionX)
+    {
+        if(scoreOffset == 0)
+        {
+            scoreOffset = (int) player.transform.position.x;
+        }
+
+        currentScore = (Mathf.RoundToInt(playerPositionX) - scoreOffset);
+        scoreText.text = currentScore.ToString();
     }
 }

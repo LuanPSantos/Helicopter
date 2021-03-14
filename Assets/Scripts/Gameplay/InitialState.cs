@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class InitialState : GameplayState
 {
-
     HelicopterBehaviour helicopterBehaviour;
     public InitialState(GameplayManager manager) : base(manager)
     {

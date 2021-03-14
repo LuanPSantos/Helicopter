@@ -25,8 +25,16 @@ public class HelicopterBehaviour : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         initialPosition = transform.position;
+    }
 
+    private void Start()
+    {
         GameplayManager.OnSpeedChanged += SetSpeed;
+    }
+
+    private void OnDestroy()
+    {
+        GameplayManager.OnSpeedChanged -= SetSpeed;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -45,59 +53,6 @@ public class HelicopterBehaviour : MonoBehaviour
         Fly();
     }
 
-    private void ToggleIsAccelerating()
-    {
-
-
-#if UNITY_ANDROID
-            if(Application.platform == RuntimePlatform.Android)
-            {
-                isAccelerating = Input.touchCount > 0;
-            }
-#endif
-
-#if UNITY_EDITOR
-        if (Application.platform == RuntimePlatform.WindowsEditor)
-            {
-                isAccelerating = Input.GetKey(KeyCode.Mouse0);
-            }
-        #endif
-
-    }
-
-    private void Fly()
-    {
-        if(isAccelerating)
-        {
-            rb.AddForce(transform.up * force, ForceMode2D.Force);
-        }
-    }
-
-    private void FlyForward()
-    {
-        transform.Translate(Vector2.right * speed * Time.deltaTime);
-        onChangeXPosition?.Invoke(Mathf.RoundToInt(transform.position.x));
-    }
-
-    private void Explode()
-    {
-        particles.gameObject.transform.position = transform.position;
-        particles.Play();
-    }
-
-    private void Crash()
-    {
-        Explode();
-
-        graph.SetActive(false);
-        rb.isKinematic = true;
-        rb.constraints = RigidbodyConstraints2D.FreezeAll;
-        enabled = false;
-        isDead = true;
-
-        onCrash?.Invoke();
-    }
-
     public void Reposition()
     {
         graph.SetActive(true);
@@ -112,6 +67,56 @@ public class HelicopterBehaviour : MonoBehaviour
     {
         rb.isKinematic = false;
         enabled = true;
+    }
+
+    private void ToggleIsAccelerating()
+    {
+        #if UNITY_ANDROID
+        if(Application.platform == RuntimePlatform.Android)
+        {
+            isAccelerating = Input.touchCount > 0;
+        }
+        #endif
+
+        #if UNITY_EDITOR
+        if (Application.platform == RuntimePlatform.WindowsEditor)
+        {
+            isAccelerating = Input.GetKey(KeyCode.Mouse0);
+        }
+        #endif
+    }
+
+    private void Fly()
+    {
+        if(isAccelerating)
+        {
+            rb.AddForce(transform.up * force, ForceMode2D.Force);
+        }
+    }
+
+    private void FlyForward()
+    {
+        transform.Translate(Vector2.right * speed * Time.deltaTime);
+        onChangeXPosition?.Invoke(transform.position.x);
+    }
+
+    private void Explode()
+    {
+        particles.gameObject.transform.position = transform.position;
+        graph.SetActive(false);
+        particles.Play();
+    }
+
+    private void Crash()
+    {
+        Explode();
+
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        rb.isKinematic = true;
+        enabled = false;
+        isDead = true;
+
+        onCrash?.Invoke();
     }
 
     private void SetSpeed(float speed)

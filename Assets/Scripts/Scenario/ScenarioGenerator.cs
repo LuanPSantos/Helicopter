@@ -11,16 +11,10 @@ public class ScenarioGenerator : MonoBehaviour
     public int minSpaceSize;
     public float xNoiseScale;
     public float yNoiseScale;
-    public float returnOffset = 10;
 
-    private int lastXPosition = 21;
+    private int lastXPosition = 0;
 
     private ObjectPooler objectPooler;
-
-    private void Awake()
-    {
-        
-    }
 
     private void Start()
     {
@@ -33,13 +27,15 @@ public class ScenarioGenerator : MonoBehaviour
         HelicopterBehaviour.onChangeXPosition -= GenerateColumn;
     }
 
-    private void GenerateColumn(float x)
+    private void GenerateColumn(float xRef)
     {
-        x = x + offsetColumnPositionX;
+        int x = CalculateX(xRef);
+
+        TrackLastXPosition(x);        
 
         if (x != lastXPosition + 1) return;
-
         lastXPosition++;
+
         int startSpacePositionY = GetSpaceStartPosition(x);
         int finalSpacePositionY = startSpacePositionY + GetSpaceSize(x, startSpacePositionY);
 
@@ -85,6 +81,19 @@ public class ScenarioGenerator : MonoBehaviour
         }
 
         return startPosition;
+    }
+
+    private void TrackLastXPosition(float x)
+    {
+        if (lastXPosition == 0)
+        {
+            lastXPosition = (int)x - 1;
+        }
+    }
+
+    private int CalculateX(float xRef)
+    {
+        return Mathf.RoundToInt(xRef) + offsetColumnPositionX;
     }
 
     private float GetYPerlinNoise(float coordRef)

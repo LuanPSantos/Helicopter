@@ -22,6 +22,11 @@ public class CineMachineShake : MonoBehaviour
          HelicopterBehaviour.onCrash += ShakeCamera;
     }
 
+    private void OnDestroy()
+    {
+        HelicopterBehaviour.onCrash -= ShakeCamera;
+    }
+
     void Update()
     {
         if(currentTimeCount > 0f)
