@@ -6519,7 +6519,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.860336, y: 5, z: -10}
+  m_LocalPosition: {x: 8.805533, y: 5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -7426,6 +7426,10 @@ MonoBehaviour:
   explosionClip: {fileID: 8300000, guid: b601af2fe1c750b4db327472200c0126, type: 3}
   force: 90000
   isDead: 0
+  targetFlyingRotation: -0.1
+  targetFlyingPitch: 1.8
+  targetFlyingPitchVariation: 0.3
+  basePitch: 1.2
 --- !u!4 &806171127
 Transform:
   m_ObjectHideFlags: 0
@@ -7562,18 +7566,18 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.15308768, y: 0.23462343}
-      - {x: -0.16217273, y: 0.24370623}
-      - {x: -0.29505914, y: 0.061602592}
-      - {x: -0.72617507, y: 0.04288864}
-      - {x: -0.850657, y: 0.24156475}
-      - {x: -0.9099025, y: 0.23952913}
-      - {x: -0.8509428, y: -0.07798481}
-      - {x: -0.28890365, y: -0.11175156}
-      - {x: -0.16262883, y: -0.26507902}
-      - {x: 0.23604256, y: -0.26199532}
-      - {x: 0.38191462, y: -0.13772345}
-      - {x: 0.39395386, y: -0.0229702}
+    - - {x: 0.05487877, y: 0.19984102}
+      - {x: -0.033273876, y: 0.19460201}
+      - {x: -0.22754067, y: 0.037050724}
+      - {x: -0.48269916, y: 0.04084301}
+      - {x: -0.56012297, y: 0.15563202}
+      - {x: -0.62550634, y: 0.1535964}
+      - {x: -0.5747308, y: -0.049340725}
+      - {x: -0.26435155, y: -0.05241728}
+      - {x: -0.1094324, y: -0.17300844}
+      - {x: 0.17670804, y: -0.17606258}
+      - {x: 0.25710773, y: -0.09066486}
+      - {x: 0.2589169, y: -0.010694027}
 --- !u!50 &806171131
 Rigidbody2D:
   serializedVersion: 4
@@ -15677,7 +15681,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1757229775}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.860336, y: 5, z: -10}
+  m_LocalPosition: {x: 8.805533, y: 5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1483933994}

@@ -12,10 +12,15 @@ public class HelicopterBehaviour : MonoBehaviour
 
     public float force = 90_000f;
     public bool isDead = false;
+    public float targetFlyingRotation = -0.1f;
+    public float targetFlyingPitch = 1.8f;
+    public float targetFlyingPitchVariation = 0.3f;
+    public float basePitch = 1.2f;
+  
 
     private Rigidbody2D rb;
     private Vector3 initialPosition;
-    private AudioSource explosionSound;
+    private AudioSource audioSource;
 
     private bool isAccelerating = false;
     private float speed = 0;
@@ -26,7 +31,7 @@ public class HelicopterBehaviour : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        explosionSound = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         initialPosition = transform.position;
     }
 
@@ -94,14 +99,17 @@ public class HelicopterBehaviour : MonoBehaviour
         if(isAccelerating)
         {
             rb.AddForce(transform.up * force, ForceMode2D.Force);
-            Debug.Log(graph.transform.rotation.z);
-            if(graph.transform.rotation.z >= -0.1)
+
+            audioSource.pitch = Mathf.Lerp(audioSource.pitch, targetFlyingPitch, targetFlyingPitchVariation);
+
+            if(graph.transform.rotation.z >= targetFlyingRotation)
             {
                 graph.transform.rotation = Quaternion.Slerp(graph.transform.rotation, Quaternion.Euler(0, 0, -8f), 0.1f);
             }            
         }
         else
         {
+            audioSource.pitch = basePitch;
             graph.transform.rotation = Quaternion.Slerp(graph.transform.rotation, Quaternion.identity, 0.1f);
         }
     }
@@ -114,8 +122,8 @@ public class HelicopterBehaviour : MonoBehaviour
 
     private void Explode()
     {
-        explosionSound.Stop();
-        explosionSound.PlayOneShot(explosionClip);
+        audioSource.Stop();
+        audioSource.PlayOneShot(explosionClip);
         particles.gameObject.transform.position = transform.position;
         graph.SetActive(false);
         particles.Play();
