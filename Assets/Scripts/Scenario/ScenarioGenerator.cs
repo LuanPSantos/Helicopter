@@ -11,6 +11,7 @@ public class ScenarioGenerator : MonoBehaviour
     public int minSpaceSize;
     public float xNoiseScale;
     public float yNoiseScale;
+    public int blockSize = 4;
 
     private int lastXPosition = 0;
 
@@ -33,17 +34,17 @@ public class ScenarioGenerator : MonoBehaviour
 
         TrackLastXPosition(x);        
 
-        if (x != lastXPosition + 1) return;
-        lastXPosition++;
+        if (x != lastXPosition + blockSize) return;
+        lastXPosition += blockSize;
 
         int startSpacePositionY = GetSpaceStartPosition(x);
         int finalSpacePositionY = startSpacePositionY + GetSpaceSize(x, startSpacePositionY);
 
-        for (float y = wallStartPositionY; y < wallStartPositionY + wallSize; y += 1f)
+        for (float y = wallStartPositionY; y < wallStartPositionY + wallSize; y += blockSize)
         {
             if(y < startSpacePositionY || y > finalSpacePositionY)
             {
-                objectPooler.SpawnFromPool("wall", new Vector3(x, y, 0f), Quaternion.identity, new Vector3(oneNegativeOrPositive(), oneNegativeOrPositive()));
+                objectPooler.SpawnFromPool("wall", new Vector3(x, y, 0f), Quaternion.identity, new Vector3(1,1));
             }            
         }
     }
@@ -87,7 +88,7 @@ public class ScenarioGenerator : MonoBehaviour
     {
         if (lastXPosition == 0)
         {
-            lastXPosition = (int)x - 1;
+            lastXPosition = (int)x - blockSize;
         }
     }
 

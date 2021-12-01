@@ -48,6 +48,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -72,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 38c7da379d77d764e8f3e4c9342418ee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 29bf371002e92c849ac06a4fdf711e6b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,14 +101,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 4, y: 4}
     newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 4, y: 4}
   m_EdgeRadius: 0
 --- !u!114 &6631290826038755974
 MonoBehaviour:
@@ -122,5 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 21300000, guid: 38c7da379d77d764e8f3e4c9342418ee, type: 3}
-  - {fileID: 21300000, guid: 183b04f5a1c285e4c95095730d00c24f, type: 3}
+  - {fileID: 21300000, guid: d7b647e243e6bd34ab72a9c487007a06, type: 3}
+  - {fileID: 21300000, guid: d4be7d97dfe1c714194668deae2b1ed7, type: 3}
+  - {fileID: 21300000, guid: 2ff9986645e39934eb2104f8b44dd9db, type: 3}
+  - {fileID: 21300000, guid: 29bf371002e92c849ac06a4fdf711e6b, type: 3}
