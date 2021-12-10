@@ -7,7 +7,7 @@ public class ScenarioGenerator : MonoBehaviour
     public int wallStartPositionY;
     public int wallSize;
     public int offsetColumnPositionX;
-    public int spaceOffset;
+    public int borderOffset;
     public int minSpaceSize;
     public float xNoiseScale;
     public float yNoiseScale;
@@ -42,7 +42,7 @@ public class ScenarioGenerator : MonoBehaviour
 
         for (float y = wallStartPositionY; y < wallStartPositionY + wallSize; y += blockSize)
         {
-            if(y < startSpacePositionY || y > finalSpacePositionY)
+            if(y <= startSpacePositionY || y > finalSpacePositionY)
             {
                 objectPooler.SpawnFromPool("wall", new Vector3(x, y, 0f), Quaternion.identity, new Vector3(1,1));
             }            
@@ -52,7 +52,7 @@ public class ScenarioGenerator : MonoBehaviour
     private int GetSpaceSize(float xCoordRef, int startSpacePositionY)
     {
         
-        int maxSpaceSize = wallSize - (2 * spaceOffset) - Mathf.Abs(startSpacePositionY);
+        int maxSpaceSize = wallSize - (2 * borderOffset) - Mathf.Abs(startSpacePositionY);
 
         float noise = GetXPerlinNoise(xCoordRef);
 
@@ -68,20 +68,12 @@ public class ScenarioGenerator : MonoBehaviour
 
     private int GetSpaceStartPosition(float yCoordRef)
     {
-        int minSpaceStartPosition = wallStartPositionY + spaceOffset;
-        int maxSpaceStartPosition = wallStartPositionY + wallSize - minSpaceSize;
+        int minSpaceStartPosition = wallStartPositionY + borderOffset;
+        int maxSpaceStartPosition = wallStartPositionY + wallSize - minSpaceSize - borderOffset;
 
-        int startPosition = (int) (GetYPerlinNoise(yCoordRef) * maxSpaceStartPosition);
+        int startPosition = (int) (GetYPerlinNoise(yCoordRef) * (maxSpaceStartPosition + minSpaceStartPosition)/2 );
 
-        if(startPosition < minSpaceStartPosition)
-        {
-            startPosition = minSpaceStartPosition;
-        }else if(startPosition > maxSpaceStartPosition)
-        {
-            startPosition = maxSpaceStartPosition;
-        }
-
-        return startPosition;
+        return Mathf.Clamp(startPosition, minSpaceStartPosition, maxSpaceStartPosition);
     }
 
     private void TrackLastXPosition(float x)
@@ -113,7 +105,7 @@ public class ScenarioGenerator : MonoBehaviour
 
     private float CalculatePerlinNoiseCoord(float coordRef, float noiseScale)
     {
-        return (coordRef) / 20 * noiseScale;
+        return Time.time * noiseScale;
     }
 
     public static int oneNegativeOrPositive()
