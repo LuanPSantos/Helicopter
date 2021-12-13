@@ -37,43 +37,47 @@ public class ScenarioGenerator : MonoBehaviour
         if (x != lastXPosition + blockSize) return;
         lastXPosition += blockSize;
 
-        int startSpacePositionY = GetSpaceStartPosition(x);
-        int finalSpacePositionY = startSpacePositionY + GetSpaceSize(x, startSpacePositionY);
-
-        for (float y = wallStartPositionY; y < wallStartPositionY + wallSize; y += blockSize)
+        int spaceStartPosition = GetSpaceStartPosition();
+        int spaceSize = GetSpaceSize(spaceStartPosition);
+        int giftPosition = int.MinValue;
+        if (spaceSize > 5 && Random.Range(0, 10) == 4) 
         {
-            if(y <= startSpacePositionY || y > finalSpacePositionY)
+            giftPosition = Random.Range(spaceStartPosition, spaceStartPosition + spaceSize);
+        }
+
+        for (float y = wallStartPositionY; y <= wallStartPositionY + wallSize; y += blockSize)
+        {
+            if(y < spaceStartPosition || y > spaceStartPosition + spaceSize || wallStartPositionY + wallSize == y || wallStartPositionY == y)
             {
-                objectPooler.SpawnFromPool("wall", new Vector3(x, y, 0f), Quaternion.identity, new Vector3(1,1));
-            }            
+                objectPooler.SpawnFromPool("wall", new Vector3(x, y, 0f), Quaternion.identity, new Vector3(1, 1));
+
+            }  else
+            {
+                if (y == giftPosition)
+                {
+                    objectPooler.SpawnFromPool("gift", new Vector3(x, y, 0f), Quaternion.identity, new Vector3(1, 1));
+                }
+            }          
         }
     }
 
-    private int GetSpaceSize(float xCoordRef, int startSpacePositionY)
+    private int GetSpaceSize(int minSpaceStartPosition)
     {
-        
-        int maxSpaceSize = wallSize - (2 * borderOffset) - Mathf.Abs(startSpacePositionY);
+        int maxSpaceEndPosition = wallStartPositionY + wallSize;
 
-        float noise = GetXPerlinNoise(xCoordRef);
+        int spaceSize = (int) (GetXPerlinNoise() * (maxSpaceEndPosition - minSpaceStartPosition));
 
-        int spaceSize = (int) (noise * maxSpaceSize);
-
-        if(spaceSize < minSpaceSize)
-        {
-            spaceSize = minSpaceSize;
-        }
-
-        return spaceSize;
+        return Mathf.Clamp(spaceSize, minSpaceSize, maxSpaceEndPosition - minSpaceStartPosition);
     }
 
-    private int GetSpaceStartPosition(float yCoordRef)
+    private int GetSpaceStartPosition()
     {
-        int minSpaceStartPosition = wallStartPositionY + borderOffset;
-        int maxSpaceStartPosition = wallStartPositionY + wallSize - minSpaceSize - borderOffset;
+        int minSpaceStartPosition = wallStartPositionY;
+        int maxSpaceEndPosition = wallStartPositionY + wallSize;
 
-        int startPosition = (int) (GetYPerlinNoise(yCoordRef) * (maxSpaceStartPosition + minSpaceStartPosition)/2 );
+        int startPosition = (int) (GetYPerlinNoise() * (maxSpaceEndPosition - minSpaceStartPosition));
 
-        return Mathf.Clamp(startPosition, minSpaceStartPosition, maxSpaceStartPosition);
+        return Mathf.Clamp(startPosition + minSpaceStartPosition, minSpaceStartPosition, maxSpaceEndPosition);
     }
 
     private void TrackLastXPosition(float x)
@@ -89,21 +93,21 @@ public class ScenarioGenerator : MonoBehaviour
         return Mathf.RoundToInt(xRef) + offsetColumnPositionX;
     }
 
-    private float GetYPerlinNoise(float coordRef)
+    private float GetYPerlinNoise()
     {
-        float yCoord = CalculatePerlinNoiseCoord(coordRef, yNoiseScale);
+        float yCoord = CalculatePerlinNoiseCoord(yNoiseScale);
 
         return Mathf.PerlinNoise(0f, yCoord);
     }
 
-    private float GetXPerlinNoise(float coordRef)
+    private float GetXPerlinNoise()
     {
-        float xCoord = CalculatePerlinNoiseCoord(coordRef, xNoiseScale);
+        float xCoord = CalculatePerlinNoiseCoord(xNoiseScale);
 
         return Mathf.PerlinNoise(xCoord, 0f);
     }
 
-    private float CalculatePerlinNoiseCoord(float coordRef, float noiseScale)
+    private float CalculatePerlinNoiseCoord(float noiseScale)
     {
         return Time.time * noiseScale;
     }
