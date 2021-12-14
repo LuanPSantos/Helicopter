@@ -73,8 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 4804446361586417100, guid: a70ad7d05122aa9469f97a5e0af9660e,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: 38c7da379d77d764e8f3e4c9342418ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -124,12 +123,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 4804446361586417100, guid: a70ad7d05122aa9469f97a5e0af9660e, type: 3}
-  - {fileID: -7688356529983298438, guid: a70ad7d05122aa9469f97a5e0af9660e, type: 3}
-  - {fileID: -6113606119065762621, guid: a70ad7d05122aa9469f97a5e0af9660e, type: 3}
-  - {fileID: -1849047750971238059, guid: a70ad7d05122aa9469f97a5e0af9660e, type: 3}
-  - {fileID: -3632615384808042850, guid: a70ad7d05122aa9469f97a5e0af9660e, type: 3}
-  - {fileID: 9088407016249567572, guid: a70ad7d05122aa9469f97a5e0af9660e, type: 3}
-  - {fileID: -4911017183162878569, guid: a70ad7d05122aa9469f97a5e0af9660e, type: 3}
-  - {fileID: -242768484182980809, guid: a70ad7d05122aa9469f97a5e0af9660e, type: 3}
-  - {fileID: 6657255337997859584, guid: a70ad7d05122aa9469f97a5e0af9660e, type: 3}
+  - {fileID: 21300000, guid: 38c7da379d77d764e8f3e4c9342418ee, type: 3}
+  - {fileID: 21300000, guid: 183b04f5a1c285e4c95095730d00c24f, type: 3}

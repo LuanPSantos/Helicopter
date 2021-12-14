@@ -12,6 +12,7 @@ public class ScenarioGenerator : MonoBehaviour
     public float xNoiseScale;
     public float yNoiseScale;
     public int blockSize = 4;
+    public int heartSpawnChance = 20;
 
     private int lastXPosition = 0;
 
@@ -40,7 +41,7 @@ public class ScenarioGenerator : MonoBehaviour
         int spaceStartPosition = GetSpaceStartPosition();
         int spaceSize = GetSpaceSize(spaceStartPosition);
         int giftPosition = int.MinValue;
-        if (spaceSize > 5 && Random.Range(0, 10) == 4) 
+        if (Random.Range(0, 100) < heartSpawnChance) 
         {
             giftPosition = Random.Range(spaceStartPosition, spaceStartPosition + spaceSize);
         }

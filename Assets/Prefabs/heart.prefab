@@ -10,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 7118989029177819889}
   - component: {fileID: 428908288517294246}
-  - component: {fileID: 2951180857913959204}
+  - component: {fileID: 4729135439435266011}
+  - component: {fileID: 2720747277376065106}
   m_Layer: 0
-  m_Name: gift
-  m_TagString: Untagged
+  m_Name: heart
+  m_TagString: heart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -72,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3a45748acf353db41ae19d31552cd7b1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7390225f4ae0fee45994c26458376233, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -83,8 +84,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &2951180857913959204
-BoxCollider2D:
+--- !u!58 &4729135439435266011
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -96,16 +97,19 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.7, y: 0.81}
-    newSize: {x: 0.7, y: 0.81}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: -0.02, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.7, y: 0.81}
-  m_EdgeRadius: 0
+  m_Radius: 0.19
+--- !u!114 &2720747277376065106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8148145733043711510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a43a1af60f9493e4d88d7d7bc17c25c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0

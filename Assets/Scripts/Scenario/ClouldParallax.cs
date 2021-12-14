@@ -4,46 +4,19 @@ using UnityEngine;
 
 public class ClouldParallax : MonoBehaviour
 {
+    private float scrollSpeed = 50f;
+    private Renderer rend;
 
-    public float startRangeY = 0f;
-    public float finalRangeY = 10f;
-    public float minIntervalToSpawn = 1f;
-    public float maxIntervalToSpawn = 3f;
 
-    private float countTimeToSpawn = 0;
-    private float timeToSpawn = 0;
-
-    private ObjectPooler objectPooler;
-
-    private void Awake()
+    void Start()
     {
-        objectPooler = ObjectPooler.Instance;
+        rend = GetComponent<Renderer>();
     }
 
     void Update()
     {
-        if(countTimeToSpawn >= timeToSpawn)
-        {
-            SpawnCloud();
-            DefineTimeToSpawn();
-        }else
-        {
-            countTimeToSpawn += Time.deltaTime;
-        }
-    }
-
-    private void SpawnCloud()
-    {
-        float positionToSpawnY = Random.Range(startRangeY, finalRangeY);
-        float positionToSpawnX = transform.position.x;
-
-        objectPooler.SpawnFromPool("cloud", new Vector2(positionToSpawnX, positionToSpawnY), Quaternion.identity, new Vector3(1, 1, 1));
-    }
-
-    private void DefineTimeToSpawn()
-    {
-        timeToSpawn = Random.Range(minIntervalToSpawn, maxIntervalToSpawn);
-        countTimeToSpawn = 0;
+        float offset = Time.time * scrollSpeed;
+        rend.sharedMaterial.mainTextureOffset = new Vector2(offset, 0);
     }
 
 }
