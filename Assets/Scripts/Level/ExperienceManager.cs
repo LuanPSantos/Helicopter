@@ -36,7 +36,7 @@ public class ExperienceManager : MonoBehaviour
         nextLevelExperienceNeeded = GetNextLevelExperienceNeededByLevel();
 
         levelSlider.value = GetProgress();
-        levelText.text = currentLevel.ToString() + " level";
+        levelText.text = currentLevel.ToString();
     }
 
     private void IncrementExperience()
@@ -55,7 +55,7 @@ public class ExperienceManager : MonoBehaviour
         }
 
         levelSlider.value = GetProgress();
-        levelText.text = currentLevel.ToString() + " level";
+        levelText.text = currentLevel.ToString();
 
         PlayerPrefs.SetInt("xp", currentExperience);
         PlayerPrefs.SetInt("level", currentLevel);
@@ -75,20 +75,4 @@ public class ExperienceManager : MonoBehaviour
     {
         return Mathf.CeilToInt(currentLevel * experienceBoost);
     }
-
-    private int Fib(int num)
-    {
-        if(num <= 0)
-        {
-            return 0;
-        }
-        if(num == 1 || num == 2)
-        {
-            return 1;
-        }
-
-        return Fib(num - 1) + Fib(num - 2);
-    }
-
-
 }

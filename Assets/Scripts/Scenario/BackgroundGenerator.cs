@@ -6,7 +6,8 @@ public class BackgroundGenerator : MonoBehaviour
 {
     public Vector3 startPosition;
     public string parallaxObject;
-    public Transform pointRef;
+    public Transform frontPointRef;
+    public Transform backPointRef;
 
     private float offset;
     private GameObject lastObj;
@@ -20,9 +21,12 @@ public class BackgroundGenerator : MonoBehaviour
 
     void Update()
     {
-        if(pointRef.position.x >= lastObj.transform.position.x + offset / 2)
+        if(frontPointRef.position.x >= lastObj.transform.position.x + offset / 2)
         {
             lastObj = ObjectPooler.Instance.SpawnFromPool(parallaxObject, lastObj.transform.position + new Vector3(offset, 0, 0), Quaternion.identity, Vector3.one);
+        } else if (backPointRef.position.x <= lastObj.transform.position.x + offset / 2)
+        {
+            lastObj = ObjectPooler.Instance.SpawnFromPool(parallaxObject, lastObj.transform.position + new Vector3(-offset, 0, 0), Quaternion.identity, Vector3.one);
         }
     }
 

@@ -7,6 +7,8 @@ using TMPro;
 public class EndGameMenu : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
+    public ScoreManager scoreManager;
+
     public void GoToMainMenu()
     {
         SceneManager.LoadScene(0);
@@ -17,8 +19,8 @@ public class EndGameMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
     }
 
-    public void SetScore(int score)
+    public void SetScore()
     {
-        scoreText.text = score.ToString();
+        scoreText.text = scoreManager.getCurrentScore().ToString();
     }
 }
