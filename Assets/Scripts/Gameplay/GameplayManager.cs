@@ -13,6 +13,7 @@ public class GameplayManager : MonoBehaviour
     public GameObject player;
     public EndGameMenu endGameMenu;
     public TextMeshProUGUI scoreText;
+    public AudioClip collectClip;
 
     public float speed;
     public float difficulty;
@@ -20,16 +21,26 @@ public class GameplayManager : MonoBehaviour
     public GameplayStateMachine stateMachine;
 
     public int currentScore = 0;
-    public int scoreOffset = 0;
+    private int scoreOffset = 0;
+    private AudioSource audioSource;
     private void Awake()
     {
         stateMachine = new GameplayStateMachine(new InitialState(this));
+
+        audioSource = GetComponent<AudioSource>();
     }
     void Start()
     {
         stateMachine.Apply();
 
         HelicopterBehaviour.onChangeXPosition += Score;
+        HeartBehaviour.onCollectHeart += PlayCollectSound;
+    }
+
+    void OnDestroy()
+    {
+        HelicopterBehaviour.onChangeXPosition -= Score;
+        HeartBehaviour.onCollectHeart -= PlayCollectSound;
     }
 
     void Update()
@@ -58,5 +69,10 @@ public class GameplayManager : MonoBehaviour
 
         currentScore = (Mathf.RoundToInt(playerPositionX) - scoreOffset);
         scoreText.text = currentScore.ToString();
+    }
+
+    private void PlayCollectSound()
+    {
+        audioSource.PlayOneShot(collectClip);
     }
 }
