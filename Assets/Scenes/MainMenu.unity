@@ -3487,8 +3487,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 816136715}
-        m_TargetAssemblyTypeName: FacebookManager, Assembly-CSharp
-        m_MethodName: Login
+        m_TargetAssemblyTypeName: NativeScoreShare, Assembly-CSharp
+        m_MethodName: Share
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3545,7 +3545,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 816136710}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 857714a3626c0da448efa2105ec3b824, type: 3}
+  m_Script: {fileID: 11500000, guid: c70b11bb941cc914caf0af25eae88afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &858510726
@@ -7702,7 +7702,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 816136715}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: FacebookManager, Assembly-CSharp
         m_MethodName: Share
         m_Mode: 1

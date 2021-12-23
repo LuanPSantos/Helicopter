@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Facebook.Unity;
+//using Facebook.Unity;
 
 public class FacebookManager : MonoBehaviour
 {
+    /*
     void Awake()
     {
         if (!FB.IsInitialized)
@@ -99,5 +100,5 @@ public class FacebookManager : MonoBehaviour
             // Share succeeded without postID
             Debug.Log("ShareLink success!");
         }
-    }
+    }*/
 }
