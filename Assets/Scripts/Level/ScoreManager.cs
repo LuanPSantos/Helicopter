@@ -11,14 +11,19 @@ public class ScoreManager : MonoBehaviour
     private int currentScore = 0;
     private int scoreOffset = 0;
     private int scoreRecord;
+    private bool isARecord = false;
+    private int totalCollected = 0;
+
     void Start()
     {
         scoreRecord =  PlayerPrefs.GetInt("record", 0);
         scoreRecordText.text = scoreRecord.ToString();
+        totalCollected = 0;
 
         HelicopterBehaviour.onChangeXPosition += Score;
         HelicopterBehaviour.onCrash += SaveScore;
         HelicopterBehaviour.onCrash += SendScore;
+        HeartBehaviour.onCollectHeart += CountCollected;
     }
 
     private void Score(float playerPositionX)
@@ -38,14 +43,20 @@ public class ScoreManager : MonoBehaviour
     {
         HelicopterBehaviour.onChangeXPosition -= Score;
         HelicopterBehaviour.onCrash -= SaveScore;
+        HelicopterBehaviour.onCrash -= SendScore;
+        HeartBehaviour.onCollectHeart -= CountCollected;
     }
 
     private void SaveScore()
     {
         if(currentScore > scoreRecord)
         {
+            isARecord = true;
             PlayerPrefs.SetInt("record", currentScore);
             scoreRecordText.text = currentScore.ToString();
+        }else
+        {
+            isARecord = false;
         }
     }
 
@@ -58,4 +69,20 @@ public class ScoreManager : MonoBehaviour
     {
         return currentScore;
     }
+
+    public int GetTotalCollected()
+    {
+        return totalCollected;
+    }
+
+    public bool isRecord()
+    {
+        return isARecord;
+    }
+
+    private void CountCollected()
+    {
+        totalCollected++;
+    }
+
 }
