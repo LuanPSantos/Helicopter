@@ -26,7 +26,7 @@ public class NativeShereScore : MonoBehaviour
 		Destroy(ss);
 
 		new NativeShare().AddFile(filePath)
-			.SetSubject("Novo Record em Helicopter").SetText("Baixa aí, bora jogar!").SetUrl("https://github.com/yasirkula/UnityNativeShare")
+			.SetSubject("Novo Record em Helicopter").SetText("Baixa aí, bora jogar!").SetUrl("https://play.google.com/store/apps/details?id=com.TraineeCodeplays.Helicopter")
 			.SetCallback((result, shareTarget) => Debug.Log("Share result: " + result + ", selected app: " + shareTarget))
 			.Share();
 	}
