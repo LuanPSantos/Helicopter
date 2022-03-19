@@ -14,6 +14,8 @@ public class ScenarioGenerator : MonoBehaviour
     public int blockSize = 4;
     public int heartSpawnChance = 20;
 
+    public GameplayManager gameplayManager;
+
     private int lastXPosition = 0;
 
     private ObjectPooler objectPooler;

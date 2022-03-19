@@ -14,8 +14,6 @@ public class InGameState : GameplayState
     }
     public override void Apply()
     {
-        gameplayManager.IncreaseDifficulty();
-
         if(helicopterBehaviour.isDead)
         {
             gameplayManager.stateMachine.SetState(new GameOverState(gameplayManager));

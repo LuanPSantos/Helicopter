@@ -16,14 +16,13 @@ public class HelicopterBehaviour : MonoBehaviour
     public float targetFlyingPitch = 1.8f;
     public float targetFlyingPitchVariation = 0.3f;
     public float basePitch = 1.2f;
-  
+    public float speed = 3;
 
     private Rigidbody2D rb;
     private Vector3 initialPosition;
     private AudioSource audioSource;
 
     private bool isAccelerating = false;
-    private float speed = 0;
 
     public static event Action onCrash;
     public static event Action<float> onChangeXPosition;
@@ -33,16 +32,6 @@ public class HelicopterBehaviour : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
         initialPosition = transform.position;
-    }
-
-    private void Start()
-    {
-        GameplayManager.OnSpeedChanged += SetSpeed;
-    }
-
-    private void OnDestroy()
-    {
-        GameplayManager.OnSpeedChanged -= SetSpeed;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -140,10 +129,5 @@ public class HelicopterBehaviour : MonoBehaviour
         isDead = true;
 
         onCrash?.Invoke();
-    }
-
-    private void SetSpeed(float speed)
-    {
-        this.speed = speed;
     }
 }

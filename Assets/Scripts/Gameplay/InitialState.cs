@@ -11,7 +11,6 @@ public class InitialState : GameplayState
         helicopterBehaviour = gameplayManager.player.GetComponent<HelicopterBehaviour>();
 
         helicopterBehaviour.Reposition();
-        gameplayManager.ResetDifficulty();
     }
 
     public override void Apply()
