@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HeartBehaviour : MonoBehaviour
+public class CollectableBehaviour : MonoBehaviour
 {
-    public static event Action onCollectHeart;
+    public static event Action onCollect;
 
     public Renderer rend;
 
@@ -21,7 +21,7 @@ public class HeartBehaviour : MonoBehaviour
     {
         if(rend.enabled)
         {
-            onCollectHeart?.Invoke();
+            onCollect?.Invoke();
             particle.Play();
 
             SetVisible(false);

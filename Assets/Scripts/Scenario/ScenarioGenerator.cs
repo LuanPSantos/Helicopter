@@ -59,7 +59,7 @@ public class ScenarioGenerator : MonoBehaviour
                 if (y == giftPosition)
                 {
                     GameObject item = objectPooler.SpawnFromPool("gift", new Vector3(x, y, 0f), Quaternion.identity, new Vector3(1, 1));
-                    item.GetComponent<HeartBehaviour>().SetVisible(true);
+                    item.GetComponent<CollectableBehaviour>().SetVisible(true);
                 }
             }          
         }

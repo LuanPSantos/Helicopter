@@ -9,9 +9,7 @@ public class GameplayManager : MonoBehaviour
 {
     public GameObject player;
     public EndGameMenu endGameMenu;
-    
     public AudioClip collectClip;
-
     public GameplayStateMachine stateMachine;
 
     
@@ -26,13 +24,13 @@ public class GameplayManager : MonoBehaviour
     {
         stateMachine.Apply();
 
-        HeartBehaviour.onCollectHeart += PlayCollectSound;
+        CollectableBehaviour.onCollect += PlayCollectSound;
     }
 
     void OnDestroy()
     {
         
-        HeartBehaviour.onCollectHeart -= PlayCollectSound;
+        CollectableBehaviour.onCollect -= PlayCollectSound;
     }
 
     void Update()

@@ -9,7 +9,7 @@ public class ItemCollectManager : MonoBehaviour
     public Slider totalCollectedSlider;
     public TextMeshProUGUI totalCollectedText;
 
-    private int totalCollected;
+    public int totalCollected;
     public int targetTotalCollected = 10;
 
     void Start()
@@ -17,7 +17,12 @@ public class ItemCollectManager : MonoBehaviour
         totalCollected = 0;
         totalCollectedText.text = totalCollected.ToString();
 
-        HeartBehaviour.onCollectHeart += OnItemCollected;
+        CollectableBehaviour.onCollect += OnItemCollected;
+    }
+
+    public int GetTotalCollected()
+    {
+        return totalCollected;
     }
 
     private void OnItemCollected()
@@ -27,13 +32,8 @@ public class ItemCollectManager : MonoBehaviour
         totalCollectedSlider.value = (float)totalCollected / targetTotalCollected;
     }
 
-    public int GetTotalCollected()
-    {
-        return totalCollected;
-    }
-
     void OnDestroy()
     {
-        HeartBehaviour.onCollectHeart -= OnItemCollected;
+        CollectableBehaviour.onCollect -= OnItemCollected;
     }
 }
