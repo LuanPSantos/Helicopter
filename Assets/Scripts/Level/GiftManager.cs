@@ -40,6 +40,6 @@ public class GiftManager : MonoBehaviour
     private void SetGiftPosition(GameObject gift, float percentage)
     {
         float slideWith = itemCollectManager.totalCollectedSlider.GetComponent<RectTransform>().rect.width;
-        gift.GetComponent<RectTransform>().anchoredPosition = new Vector2(200, (slideWith * (percentage / 100f)) - (slideWith / 2f));
+        gift.GetComponent<RectTransform>().anchoredPosition = new Vector2(170, (slideWith * (percentage / 100f)) - (slideWith / 2f));
     }
 }

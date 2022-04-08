@@ -6,7 +6,7 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class HelicopterBehaviour : MonoBehaviour
 {
-    public GameObject graph;
+    public List<GameObject> graphs;
     public ParticleSystem particles;
     public AudioClip explosionClip;
 
@@ -21,6 +21,7 @@ public class HelicopterBehaviour : MonoBehaviour
     private Rigidbody2D rb;
     private Vector3 initialPosition;
     private AudioSource audioSource;
+    private GameObject graph;
 
     private bool isAccelerating = false;
 
@@ -32,6 +33,8 @@ public class HelicopterBehaviour : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
         initialPosition = transform.position;
+
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -52,6 +55,7 @@ public class HelicopterBehaviour : MonoBehaviour
 
     public void Reposition()
     {
+        graph = graphs[UnityEngine.Random.Range(0, 2)];
         graph.SetActive(true);
         transform.position = initialPosition;
         rb.isKinematic = true;

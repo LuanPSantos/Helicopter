@@ -2,17 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WallBehaviour : MonoBehaviour, Poolable
+public class RandomSpriteBehaviour : MonoBehaviour, Poolable
 {
 
     public List<Sprite> sprites;
 
-    private SpriteRenderer spriteRenderer;
+    public SpriteRenderer spriteRenderer;
 
-    private void Awake()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-    }
     public void OnObjectSpawn()
     {
         spriteRenderer.sprite = sprites[Random.Range(0, sprites.Count)];

@@ -71,12 +71,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 7390225f4ae0fee45994c26458376233, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9690ebb9d144f5a4ab978a4f2a0b0e9d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.7, y: 0.81}
+  m_Size: {x: 1.25, y: 1.25}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -96,8 +96,9 @@ GameObject:
   - component: {fileID: -2844913475875251653}
   - component: {fileID: 7089129246209515205}
   - component: {fileID: 1543735869707906807}
+  - component: {fileID: 3286449016584797813}
   m_Layer: 0
-  m_Name: heart
+  m_Name: item
   m_TagString: heart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -433,7 +434,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.9150943, g: 0.09064613, b: 0.09064613, a: 1}
+      maxColor: {r: 1, g: 0.854902, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -5016,3 +5017,19 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &3286449016584797813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8148145733043711510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5f234ff4df744349a4e237ea8671acf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: 9690ebb9d144f5a4ab978a4f2a0b0e9d, type: 3}
+  - {fileID: 21300000, guid: 0ea310275d280874580a50b57da9f247, type: 3}
+  spriteRenderer: {fileID: 4208890558272589520}
