@@ -7100,7 +7100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.068218224, g: 0.6886792, b: 0.1953183, a: 1}
+  m_Color: {r: 0, g: 0.41568628, b: 0.03137255, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -13385,7 +13385,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 806171125}
   endGameMenu: {fileID: 1574965303}
-  collectClip: {fileID: 8300000, guid: 8e3b7ff712133d0468b025d38eebdfcc, type: 3}
+  collectClip: {fileID: 8300000, guid: 5c19af80e850cd546803a52f4452dc58, type: 3}
 --- !u!4 &973363040
 Transform:
   m_ObjectHideFlags: 0
@@ -13513,7 +13513,7 @@ MonoBehaviour:
   recordCollectedText: {fileID: 1064602399}
   bonusForItem: 10
   totalCollected: 0
-  targetTotalCollected: 100
+  targetTotalCollected: 7000
 --- !u!114 &973363043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18948,8 +18948,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281348307
-  m_fontColor: {r: 0.82745105, g: 0.18823531, b: 0.18823531, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -18972,7 +18972,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 120
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
