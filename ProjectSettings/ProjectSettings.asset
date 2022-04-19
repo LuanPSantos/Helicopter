@@ -12,7 +12,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: Trainee Codeplays
+  companyName: Ted & Tod
   productName: FLAPPY BURGER - TED&TOD
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -138,8 +138,10 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 1.12
+  bundleVersion: 1.16
   preloadedAssets:
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -189,14 +191,14 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.TraineeCodeplays.FLAPPYBURGERTEDTOD
+    Android: com.TedTod.FLAPPYBURGERTEDTOD
     Standalone: com.Company.ProductName
   buildNumber:
     Standalone: 0
     iPhone: 0
     tvOS: 0
   overrideDefaultApplicationIdentifier: 0
-  AndroidBundleVersionCode: 12
+  AndroidBundleVersionCode: 16
   AndroidMinSdkVersion: 19
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
@@ -283,8 +285,8 @@ PlayerSettings:
   AndroidTargetDevices: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: '{inproject}: helicopter-keystore.keystore'
-  AndroidKeyaliasName: helicopter
+  AndroidKeystoreName: '{inproject}: tedtod.keystore'
+  AndroidKeyaliasName: tedtodkey
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 1
   AndroidIsGame: 1
