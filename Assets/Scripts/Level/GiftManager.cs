@@ -12,6 +12,8 @@ public class GiftManager : MonoBehaviour
     public GameObject thirdGift;
     public float thirdPercentage;
 
+    public float rectTransformXPos = 170;
+
     private ItemCollectManager itemCollectManager;
 
     public Image progressSlideImage;
@@ -66,7 +68,9 @@ public class GiftManager : MonoBehaviour
 
     private void SetGiftPosition(GameObject gift, float percentage)
     {
+        percentage = percentage / 100f;
         float slideWith = itemCollectManager.totalCollectedSlider.GetComponent<RectTransform>().rect.width;
-        gift.GetComponent<RectTransform>().anchoredPosition = new Vector2(170, (slideWith * (percentage / 100f)) - (slideWith / 2f));
+
+        gift.GetComponent<RectTransform>().anchoredPosition = new Vector2(rectTransformXPos, (slideWith * percentage) - slideWith/2);
     }
 }
