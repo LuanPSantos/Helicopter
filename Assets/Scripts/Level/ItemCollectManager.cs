@@ -6,13 +6,11 @@ using TMPro;
 
 public class ItemCollectManager : MonoBehaviour
 {
-    public Slider totalCollectedSlider;
     public TextMeshProUGUI totalCollectedText;
     public TextMeshProUGUI recordCollectedText;
     public int bonusForItem = 10;
 
     public int totalCollected;
-    public int targetTotalCollected = 10;
 
     private int targetPosition = 4;
 
@@ -36,7 +34,6 @@ public class ItemCollectManager : MonoBehaviour
     {
         totalCollected += bonusForItem;
         totalCollectedText.text = totalCollected.ToString();
-        totalCollectedSlider.value = (float)totalCollected / targetTotalCollected;
 
         SaveRecord();
     }
@@ -50,7 +47,6 @@ public class ItemCollectManager : MonoBehaviour
             targetPosition++;
             totalCollected++;
             totalCollectedText.text = totalCollected.ToString();
-            // totalCollectedSlider.value = (float)totalCollected / targetTotalCollected;
 
             SaveRecord();
         }
