@@ -34,7 +34,7 @@ public class HelicopterBehaviour : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         initialPosition = transform.position;
 
-        
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -72,19 +72,19 @@ public class HelicopterBehaviour : MonoBehaviour
 
     private void ToggleIsAccelerating()
     {
-        #if UNITY_ANDROID
-        if(Application.platform == RuntimePlatform.Android)
+#if UNITY_ANDROID
+        if (Application.platform == RuntimePlatform.Android || RuntimePlatform.WebGLPlayer == Application.platform)
         {
             isAccelerating = Input.touchCount > 0;
         }
-        #endif
+#endif
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         if (Application.platform == RuntimePlatform.WindowsEditor)
         {
             isAccelerating = Input.GetKey(KeyCode.Mouse0);
         }
-        #endif
+#endif
     }
 
     private void Fly()

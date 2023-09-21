@@ -50,7 +50,7 @@ public class ItemCollectManager : MonoBehaviour
             targetPosition++;
             totalCollected++;
             totalCollectedText.text = totalCollected.ToString();
-            totalCollectedSlider.value = (float)totalCollected / targetTotalCollected;
+            // totalCollectedSlider.value = (float)totalCollected / targetTotalCollected;
 
             SaveRecord();
         }
